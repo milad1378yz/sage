@@ -1,0 +1,14 @@
+.vscode/
+*cache*
+__pycache__
+*temp*
+*test*
+data/*
+!data/*.py
+
+api_tokens.yaml
+
+!*template*
+
+.*/
+*.md
