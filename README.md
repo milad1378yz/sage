@@ -1,109 +1,60 @@
+# SAGE: Symbolic Acceleration via Generative Evolution
 
-# sage
-[![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](./requirements.txt)
-[![Stars](https://img.shields.io/github/stars/milad1378yz/sage?style=social)](https://github.com/milad1378yz/sage/stargazers)
-![Issues](https://img.shields.io/github/issues/milad1378yz/sage)
-![Repo Size](https://img.shields.io/github/repo-size/milad1378yz/sage)
-![Top Language](https://img.shields.io/github/languages/top/milad1378yz/sage)
+Code for the paper **[LLM-Guided Evolution of Symbolic Acceleration Inequality Families for MILP](https://openreview.net/forum?id=rxJvINT074)**, published in *Transactions on Machine Learning Research* (TMLR), 2026.
 
-**sage** is a Python library that accelerates Mixed-Integer Linear Programming (MILP) by injecting problem-specific cutting planes into the LP relaxation. These cuts reduce the feasible set of the LP relaxation and improve solver efficiency.
+SAGE uses LLM agents guided by evolutionary search to discover reusable acceleration inequality families for a symbolic MILP formulation. The discovered families are instantiated for each problem instance and appended to the model before solving.
 
----
-## Appendix Result: IMO 2025 Problem 6 (P6)
-
-Rectangular tiling with one hole per row and column (IMO 2025 P6). We evaluate sage on a compact 2D interval‑flow MILP for this problem as described in the paper appendix.
-
-- Benchmark sizes: `N ∈ {4, 9, 16, 25}` (Appendix E.4/F.5)
-- Baseline MILP: `RT-2DFlow`; Augmented with sage family: `EC-RT-Breaks`
-- Budget/metric: 10,000s wall‑clock; MIPGap‑time trajectories (Figure 10)
-- Outcome: sage consistently lowers the gap curves across all four sizes, reaching earlier plateaus and maintaining lower gaps than the baseline throughout the time budget (see Figure 10 in the appendix).
-- Implication: Demonstrates sage's applicability to new, previously unseen problems for LLMs, the IMO 2025 P6 tiling task sits outside standard MILP benchmarks, indicating the method does not rely on prior exposure to that specific problem.
-
-Notes
-- Ground‑truth tiling counts from the problem discussion: `N=4 --> 5 tiles` and `N=9 --> 12 tiles`.
-- Full experiment details, model, and trajectories are in the paper appendix (see "Appendix F.5" and "Figure 10").
----
 ## Installation
 
-### 1) (Optional) Create a virtual environment
 ```bash
 python -m venv .venv
-source .venv/bin/activate    # Windows: .venv\Scripts\activate
-````
-
-### 2) Install dependencies
-
-```bash
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-> **Note:** Python 3.9 recommended.
-> Requires a licensed MILP solver (e.g., [Gurobi](https://www.gurobi.com/)).
-
----
+Python 3.9 is recommended. A licensed MILP solver (e.g., [Gurobi](https://www.gurobi.com/)) is required.
 
 ## Configuration
 
-In the [`configs/`](./configs) directory:
-
-1. Copy each file whose name contains `_template`.
-2. Rename the copy (remove `_template`).
-3. Fill in credentials and hyperparameters as needed.
-
----
+In [`configs/`](./configs), copy each file whose name contains `_template`, remove `_template` from the copy's name, and fill in your credentials and hyperparameters.
 
 ## Data Preparation
 
-Use the relevant preprocessing script in `data/`:
-
 ```bash
-python data/data_prepare<suffix>.py
+python data/data_prepare_<problem>.py
 ```
 
-Replace `<suffix>` with the correct option for your dataset variant (e.g., `rand`).
-
----
+Replace `<problem>` with one of the scripts in [`data/`](./data) (e.g., `tsp`, `cwlp_rand`).
 
 ## Usage
 
-Run sage on a problem instance:
+Run SAGE:
 
 ```bash
-python src/main.py <args>
+python src/main.py <args>    # see `python src/main.py -h`
 ```
 
-See all options with:
-
-```bash
-python src/main.py -h
-```
-
----
-
-## Verification of Cuts (OSP)
-
-To check the **optimal solution preservation rate** of generated cuts:
+Check the optimal solution preservation rate of the discovered inequalities:
 
 ```bash
 python experiments/optimal_solution_preservation_cuts.py <args>
 ```
 
----
-
-## Evaluation on Test Data
-
-Evaluate sage on held-out instances:
+Evaluate on held-out instances:
 
 ```bash
 python experiments/evaluate_cut.py <args>
 ```
 
----
+## Citation
 
-## Reproducibility
-
-* Determinism: seeds are configurable in configs or CLI flags.
-* Hardware/solver versions may affect runtime but not correctness.
-* Minimal dependencies ensure reproducibility across machines.
-
-
+```bibtex
+@article{yazdani2026sage,
+  title   = {{LLM}-Guided Evolution of Symbolic Acceleration Inequality Families for {MILP}},
+  author  = {Yazdani, Milad and Mostajabdaveh, Mahdi and Aref, Samin and Zhou, Zirui},
+  journal = {Transactions on Machine Learning Research},
+  issn    = {2835-8856},
+  year    = {2026},
+  url     = {https://openreview.net/forum?id=rxJvINT074}
+}
+```
