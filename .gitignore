@@ -12,3 +12,5 @@ api_tokens.yaml
 
 .*/
 *.md
+.env
+results/
