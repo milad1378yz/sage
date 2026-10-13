@@ -50,7 +50,7 @@ python experiments/evaluate_cut.py <args>
 
 ```bibtex
 @article{yazdani2026sage,
-  title   = {{LLM}-Guided Evolution of Symbolic Acceleration Inequality Families for {MILP}},
+  title   = {LLM-Guided Evolution of Symbolic Acceleration Inequality Families for MILP},
   author  = {Yazdani, Milad and Mostajabdaveh, Mahdi and Aref, Samin and Zhou, Zirui},
   journal = {Transactions on Machine Learning Research},
   issn    = {2835-8856},
