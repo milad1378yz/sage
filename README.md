@@ -49,12 +49,14 @@ python experiments/evaluate_cut.py <args>
 ## Citation
 
 ```bibtex
-@article{yazdani2026sage,
-  title   = {LLM-Guided Evolution of Symbolic Acceleration Inequality Families for MILP},
-  author  = {Yazdani, Milad and Mostajabdaveh, Mahdi and Aref, Samin and Zhou, Zirui},
-  journal = {Transactions on Machine Learning Research},
-  issn    = {2835-8856},
-  year    = {2026},
-  url     = {https://openreview.net/forum?id=rxJvINT074}
+@article{
+  yazdani2026llmguided,
+  title={{LLM}-Guided Evolution of Symbolic Acceleration Inequality Families for {MILP}},
+  author={Milad Yazdani and Mahdi Mostajabdaveh and Samin Aref and Zirui Zhou},
+  journal={Transactions on Machine Learning Research},
+  issn={2835-8856},
+  year={2026},
+  url={https://openreview.net/forum?id=rxJvINT074},
+  note={}
 }
 ```
